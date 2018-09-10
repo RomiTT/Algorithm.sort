@@ -51,12 +51,12 @@ public:
 				bI = bJ = false;
 
 				while (!(bI && bJ)) {
-					if (i <= end && v[pivot] >= v[i] && !bI) 
+					if (!bI && i <= end && v[pivot] >= v[i])
 						i++;
 					else 
 						bI = true;
 
-					if (j > start && v[pivot] <= v[j] && !bJ) 
+					if (!bJ && j > start && v[pivot] <= v[j])
 						j--;
 					else 
 						bJ = true;
@@ -64,12 +64,15 @@ public:
 
 				if (i > j) 
 					std::swap(v[pivot], v[j]);
-				else 
+				else if (i < j)
 					std::swap(v[i], v[j]);
 			}
 
-			if (start < j) qsort(v, start, j - 1);
-			if (j < end) qsort(v, j + 1, end);
+			if (start < j) 
+				qsort(v, start, j - 1);
+
+			if (j < end) 
+				qsort(v, j + 1, end);
 		};
 
 		qsort(v, 0, v.size() - 1);
@@ -106,7 +109,8 @@ public:
 				}
 			}
 
-			for (i = start; i <= end; i++) v[i] = temp[i];
+			for (i = start; i <= end; i++) 
+				v[i] = temp[i];
 		};
 
 		std::function<void(std::vector<int>&, size_t, size_t)> sort;
@@ -129,7 +133,8 @@ public:
 				int root = (child - 1) / 2;
 				if (v[root] < v[child]) 
 					std::swap(v[root], v[child]);
-				else break;
+				else 
+					break;
 				child = root;
 			} while (child != 0);
 		}
@@ -143,7 +148,8 @@ public:
 					child++;
 				if (child < i && v[root] < v[child]) 
 					std::swap(v[root], v[child]);
-				else break;
+				else 
+					break;
 				root = child;
 			} while (child < i);
 		}

@@ -14,6 +14,9 @@ protected:
 			v1.push_back(val);
 			v2.push_back(val);
 		}
+
+		std::cout << "SIZE = " << SIZE;
+		std::cout << ", RANGE = " << MIN << "~" << MAX << endl;
 	}
 
 	void TearDown() override {
